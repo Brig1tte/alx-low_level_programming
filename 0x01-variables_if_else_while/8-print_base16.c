@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - Base 16
+ * main - Base16 Hexadecimal.
  * Return: Always 0 (Success)
  */
 int main(void)
@@ -13,7 +13,7 @@ int main(void)
 	{
 		putchar(x);
 	}
-	for (y = 97; x <= 102; y++)
+	for (y = 97; y <= 102; y++)
 	{
 		putchar(y);
 	}
