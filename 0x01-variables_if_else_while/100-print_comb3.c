@@ -29,7 +29,7 @@ int main(void)
 			}
 			k++;
 		}
-		k = '0';
+		k = '1';
 		b++;
 	}
 	return (0);
