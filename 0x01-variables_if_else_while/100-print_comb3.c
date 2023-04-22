@@ -9,7 +9,7 @@ int main(void)
 	int b = '0';
 	int k = '0';
 
-	while (b <= '0')
+	while (b <= '9')
 	{
 		while (k <= '9')
 		{
