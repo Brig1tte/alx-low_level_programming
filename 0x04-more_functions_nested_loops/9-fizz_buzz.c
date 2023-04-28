@@ -9,31 +9,32 @@
  */
 int main(void)
 {
-	int j;
+	int i;
 
-	for (j = 1; j <= 100; j++)
+	for (i = 1; i <= 100; i++)
 	{
-		if (j % 3 == 0)
+		if (i % 3 == 0 && i % 5 != 0)
 		{
-			printf("Fizz");
+			printf(" Fizz");
 		}
-		else if (j % 5 == 0)
+		else if (i % 5 == 0 && i % 3 != 0)
 		{
-			printf("Buzz");
+			printf(" Buzz");
 		}
-		else if ((j % 3 == 0) && (j % 5 == 0))
+		else if (i % 3 == 0 && i % 5 == 0)
 		{
-			printf("FizzBuzz");
+			printf(" FizzBuzz");
+		}
+		else if (i == 1)
+		{
+			printf("%d", i);
 		}
 		else
 		{
-			printf("%d", j);
-		}
-		if (j != 100)
-		{
-			printf(" ");
+			printf(" %d", i);
 		}
 	}
 	printf("\n");
+
 	return (0);
 }
