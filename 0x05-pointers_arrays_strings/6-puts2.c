@@ -11,11 +11,13 @@ void puts2(char *str)
 	int l = 0;
 	int b = 0;
 	char *c = str;
+
 	while (*c != '\0')
 	{
 		c++;
 		l++;
 	}
+
 	b = l -1;
 	for (x = 0; x <= b; x++)
 	{
