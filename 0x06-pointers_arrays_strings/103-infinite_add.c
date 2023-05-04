@@ -2,16 +2,16 @@
 
 /**
  * rev_string - reverse array
- * @p: integers
- * Returns: void
+ * @n: integers
+ * Returns: 0
  */
-void rev_string(char *p)
+void rev_string(char *n)
 {
 	int a, b;
 	char temp;
 
 	a = 0;
-	while (*(p + a) != '\0')
+	while (*(n + a) != '\0')
 	{
 		a++;
 	}
@@ -19,9 +19,9 @@ void rev_string(char *p)
 
 	for (b = 0; b < a; b++, a--)
 	{
-		temp = *(p + b);
-		*(p + b) = *(p + a);
-		*(p + a) = temp;
+		temp = *(n + b);
+		*(n + b) = *(n + a);
+		*(n + a) = temp;
 	}
 }
 
@@ -80,6 +80,5 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		return (0);
 	*(r + digits) = '\0';
 	rev_string(r);
-
 	return (r);
 }
