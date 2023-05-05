@@ -3,14 +3,14 @@
 /**
  * rev_string - reverse array
  * @n: integers
- * Returns: 0
+ * Return: 0
  */
 void rev_string(char *n)
 {
-	int a, b;
+	int a = 0;
+	int b = 0;
 	char temp;
 
-	a = 0;
 	while (*(n + a) != '\0')
 	{
 		a++;
@@ -30,7 +30,7 @@ void rev_string(char *n)
  * @n1: first number to add
  * @n2: second number to add
  * @r: buffer to store the result
- * @size r: the buffer size
+ * @size_r: the buffer size
  * Return: char
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
