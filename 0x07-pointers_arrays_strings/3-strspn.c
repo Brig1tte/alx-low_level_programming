@@ -8,25 +8,19 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int v = 0;
-	int p = 0;
+	unsigned int k, p, val, check;
 
-	while (*s)
+	val = 0;
+	for (k = 0; s[k]; k++)
 	{
-		for (; accept[p]; p++)
+		reveal = 0;
+		for (p = 0; accept[p] != '\0'; ++p)
 		{
-			if (*s == accept[p])
+			if (s[k] == accept[p])
 			{
-				v++;
-				break;
-			}
-			else
-			{
-				if (accept[p + 1] == '\0')
-				return (v);
+				++val;
+				check = 1;
 			}
 		}
-		s++;
 	}
-	return (0);
 }
