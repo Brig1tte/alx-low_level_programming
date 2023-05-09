@@ -1,9 +1,11 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
  * *_strpbrk - a function to search a string for any of a set of bytes
  * @s: string
  * @accept: bytes in the string
+ * @_strpbrk(): locates the first occurrence in the string s
  * Returns: a pointer to the byte in s, or NULL if no such byte is found
  */
 char *_strpbrk(char *s, char *accept)
@@ -18,5 +20,5 @@ char *_strpbrk(char *s, char *accept)
 				return (s + f);
 		}
 	}
-	return ('\0');
+	return (NULL);
 }
