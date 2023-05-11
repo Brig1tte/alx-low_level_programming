@@ -26,7 +26,7 @@ int real_prime(int n, int m)
 {
 	if (m == 1)
 	{
-		return(1);
+		return (1);
 	}
 	if (n % m == 0 && m > 0)
 		return (0);
