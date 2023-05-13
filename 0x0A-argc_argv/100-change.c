@@ -1,11 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
 /**
  * main - function to print the minimum number of coins to change money
  * @argc: number of arguments
  * @argv: array of arguments
- * @_atoi: convert argv to integer
  * Return: 0 (Success), 1 (Error)
  */
 int main(int argc, char *argv[])
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	num = _atoi(argv[1]);
+	num = atoi(argv[1]);
 	result = 0;
 
 	if (num < 0)
