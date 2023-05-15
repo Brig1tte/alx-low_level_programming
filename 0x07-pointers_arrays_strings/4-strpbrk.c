@@ -6,7 +6,7 @@
  * @s: string
  * @accept: bytes in the string
  * @_strpbrk(): locates the first occurrence in the string s
- * Returns: a pointer to the byte in s, or NULL if no such byte is found
+ * Return: a pointer to the byte in s, or NULL if no such byte is found
  */
 char *_strpbrk(char *s, char *accept)
 {
