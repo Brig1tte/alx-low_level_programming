@@ -18,7 +18,7 @@ void print_all(const char * const format, ...)
 	{
 		while (format[k])
 		{
-			switch(format[k])
+			switch (format[k])
 			{
 				case 'c':
 					printf("%s%c", separator, va_arg(lists, int));
@@ -45,8 +45,6 @@ void print_all(const char * const format, ...)
 			k++;
 		}
 	}
-	
 	printf("\n");
-	
 	va_end(lists);
 }
