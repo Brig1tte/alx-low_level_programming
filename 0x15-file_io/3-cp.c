@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 			free(b);
 			exit(98);
 		}
-		
+
 		y = write(f_to, b, x);
 		if (f_to == -1 || y == -1)
 		{
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 
-		x = read(from, b, 1024);
+		x = read(f_from, b, 1024);
 		f_to = open(argv[2], O_WRONLY | O_APPEND);
 	} while (x > 0);
 
