@@ -1,17 +1,14 @@
 #include <elf.h>
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_abi(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
@@ -22,14 +19,14 @@ void close_elf(int elf);
  */
 void check_elf(unsigned char *e_ident)
 {
-	int indx;
+	int idx;
 
-	for (indx = 0; indx < 4; indx++)
+	for (idx = 0; idx < 4; idx++)
 	{
-		if (e_ident[indx] != 127 &&
-			e_ident[indx] != 'E' &&
-			e_ident[indx] != 'L' &&
-			e_ident[indx] != 'F')
+		if (e_ident[idx] != 127 &&
+		    e_ident[idx] != 'E' &&
+		    e_ident[idx] != 'L' &&
+		    e_ident[idx] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -43,15 +40,15 @@ void check_elf(unsigned char *e_ident)
  */
 void print_magic(unsigned char *e_ident)
 {
-	int indx;
+	int idx;
 
-	printf(" Magic: ");
+	printf("  Magic:   ");
 
-	for (indx = 0; indx < EI_NIDENT; indx++)
+	for (idx = 0; idx < EI_NIDENT; idx++)
 	{
-		printf("%02x", e_ident[indx]);
+		printf("%02x", e_ident[idx]);
 
-		if (indx == EI_NIDENT - 1)
+		if (idx == EI_NIDENT - 1)
 			printf("\n");
 		else
 			printf(" ");
@@ -64,7 +61,7 @@ void print_magic(unsigned char *e_ident)
  */
 void print_class(unsigned char *e_ident)
 {
-	printf("Class: ");
+	printf("  Class:			");
 
 	switch (e_ident[EI_CLASS])
 	{
@@ -88,7 +85,7 @@ void print_class(unsigned char *e_ident)
  */
 void print_data(unsigned char *e_ident)
 {
-	printf(" Data:			");
+	printf("  Data:			");
 
 	switch (e_ident[EI_DATA])
 	{
@@ -112,13 +109,13 @@ void print_data(unsigned char *e_ident)
  */
 void print_version(unsigned char *e_ident)
 {
-	printf(" Version: 		%d",
+	printf("  Version:		%d",
 			e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
 	{
 		case EV_CURRENT:
-			printf("(current)\n");
+			printf(" (current)\n");
 			break;
 		default:
 			printf("\n");
@@ -132,7 +129,7 @@ void print_version(unsigned char *e_ident)
  */
 void print_osabi(unsigned char *e_ident)
 {
-	printf(" OS/ABI: 		");
+	printf("  OS/ABI:			");
 
 	switch (e_ident[EI_OSABI])
 	{
@@ -177,7 +174,7 @@ void print_osabi(unsigned char *e_ident)
  */
 void print_abi(unsigned char *e_ident)
 {
-	printf(" ABI Version: 			%d\n",
+	printf("  ABI Version:			%d\n",
 			e_ident[EI_ABIVERSION]);
 }
 
@@ -191,7 +188,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
 
-	printf(" Type: 				");
+	printf("  Type:				");
 
 	switch (e_type)
 	{
@@ -222,12 +219,12 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  */
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf(" Entry point address: 			");
+	printf("  Entry point address:			");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
 		e_entry = ((e_entry << 8) & 0xFF00FF00) |
-			((e_entry >> 8) & 0xFF00FF);
+			  ((e_entry >> 8) & 0xFF00FF);
 		e_entry = (e_entry << 16) | (e_entry >> 16);
 	}
 	if (e_ident[EI_CLASS] == ELFCLASS32)
@@ -290,9 +287,9 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
 	print_data(header->e_ident);
+	print_version(header->e_ident);
 	print_osabi(header->e_ident);
 	print_abi(header->e_ident);
-	print_version(header->e_ident);
 	print_type(header->e_type, header->e_ident);
 	print_entry(header->e_entry, header->e_ident);
 
