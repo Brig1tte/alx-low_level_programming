@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
 
 		x = read(f_from, b, 1024);
 		f_to = open(argv[2], O_WRONLY | O_APPEND);
+
 	} while (x > 0);
 
 	free(b);
