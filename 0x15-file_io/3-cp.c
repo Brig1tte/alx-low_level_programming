@@ -77,7 +77,6 @@ int main(int argc, char *argv[])
 		}
 
 		readto = read(f_from, b, 1024);
-		f_to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (readto > 0);
 
