@@ -39,7 +39,6 @@ void close_file(int fd)
 	}
 }
 
-
 /**
  * main - Function to copy contents of a file into another
  * @argv: Array of pointers to the argument
@@ -52,7 +51,7 @@ void close_file(int fd)
  */
 int main(int argc, char *argv[])
 {
-	int from, to, r, w;
+	int f_from, f_to, x, y;
 	char *b;
 
 	if (argc != 3)
@@ -62,32 +61,32 @@ int main(int argc, char *argv[])
 	}
 	b = create_buffer(argv[2]);
 	f_from = open(argv[1], O_RDONLY);
-	r = read(from, b, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	x = read(f_from, b, 1024);
+	f_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-		if (from == -1 || r == -1)
+		if (f_from == -1 || x == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 			free(b);
 			exit(98);
 		}
 		
-		w = write(to, b, r);
-		if (to == -1 || w == -1)
+		y = write(f_to, b, x);
+		if (f_to == -1 || y == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			free(b);
 			exit(99);
 		}
 
-		r = read(from, b, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
-	} while (r > 0);
+		x = read(from, b, 1024);
+		f_to = open(argv[2], O_WRONLY | O_APPEND);
+	} while (x > 0);
 
 	free(b);
-	close_file(from);
-	close_file(to);
+	close_file(f_from);
+	close_file(f_to);
 
 	return (0);
 }
