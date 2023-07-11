@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * *create_buffer - function to read 1024 bytes at a time for a buffer
+ * *create_buffer - function to read 1024 bytes at a time for buffer
  * @file: the file buffer stores the chars for
  * Return: a pointer to the new allocated buffer
  */
@@ -20,8 +20,8 @@ char *create_buffer(char *file)
 }
 
 /**
- * close_file - function to close the file descriptors
- * @fd: the file descriptors to close
+ * close_file - function to close the file descriptor
+ * @fd: the file descriptor to close
  */
 void close_file(int fd)
 {
