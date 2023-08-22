@@ -1,4 +1,4 @@
-Dynamic Libraries
-C - Programming
+DYNAMIC LIBRARIES
+C - PROGRAMMING
 
 0x18. C - Dynamic libraries
