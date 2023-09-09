@@ -21,7 +21,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	tmp = ht->shead;
+	tmp = ht->head;
 	while (tmp)
 	{
 		if (strcmp(tmp->key, key) == 0)
@@ -30,10 +30,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			tmp->value = value_copy;
 			return (1);
 		}
-		tmp = tmp->snext;
+		tmp = tmp->next;
 	}
 
-	new = malloc(sizeof(shash_node_t));
+	new = malloc(sizeof(hash_node_t));
 	if (new == NULL)
 	{
 		free(value_copy);
@@ -46,28 +46,28 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(new);
 		return (0);
 	}
+
 	new->value = value_copy;
 	new->next = ht->array[index];
 	ht->array[index] = new;
-
-	if (ht->shead == NULL)
+	if (ht->head == NULL)
 	{
-		new->sprev = NULL;
-		new->snext = NULL;
-		ht->shead = new;
-		ht->stail = new;
+		new->prev = NULL;
+		new->next = NULL;
+		ht->head = new;
+		ht->tail = new;
 	}
-	else if (strcmp(ht->shead->key, key) > 0)
+	else if (strcmp(ht->head->key, key) > 0)
 	{
-		new->sprev = NULL;
-		new->snext = ht->shead;
-		ht->shead->sprev = new;
-		ht->shead = new;
+		new->prev = NULL;
+		new->next = ht->head;
+		ht->head->prev = new;
+		ht->head = new;
 	}
 	else
 	{
 		tmp = ht->head;
-		while (tmp->next != NULL && strcmp(tmp->snext->key, key) < 0)
+		while (tmp->next != NULL && strcmp(tmp->next->key, key) < 0)
 			tmp = tmp->next;
 		new->prev = tmp;
 		new->next = tmp->next;
