@@ -15,12 +15,16 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		return (NULL);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	if (index >= ht->size)
-		return (NULL);
+	node = ht->array[index];
 
-	node = ht->head;
-	while (node != NULL && strcmp(node->key, key) != 0)
+	/* Traverse the linked list at the calculated index */
+	while (node != NULL)
+	{
+		if (strcmp(node->key, key) == 0)
+			return (node->value);
+
 		node = node->next;
+	}
 
-	return ((node == NULL) ? NULL : node->value);
+	return (NULL);
 }
