@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ This module calculates the perimeter of an island in grid """
 
-    def num_water_neighbours(grid, b, k):
+    def num_water_neighbors(grid, b, k):
         """Return num of water neighbors a cell has in a grid """
 
         num = 0
@@ -12,7 +12,7 @@
             num += 1
         if k >= len(grid[b]) - 1 or not grid[b][k + 1]:
             num += 1
-        if b >= len(grid) - or not grid[b + 1][k]:
+        if b >= len(grid) - 1 or not grid[b + 1][k]:
             num += 1
 
         return num
