@@ -1,6 +1,6 @@
 #include "search_algos.h"
 #include <stdio.h>
-
+#include <math.h>
 /**
  * jump_list - to srch 4 values in sorted list of ints
  *			using the Jump search algorithm
@@ -23,24 +23,24 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	steps = 0;
 	step_size = sqrt(size);
-	for (node = jumps = list; jumps->idx + 1 < size && jumps->n < value;)
+	for (node = jumps = list; jumps->index + 1 < size && jumps->n < value;)
 	{
 		node = jumps;
-		for (steps += step_size; jumps->idx < steps; jumps = jumps->next)
+		for (steps += step_size; jumps->index < steps; jumps = jumps->next)
 		{
-			if (jumps->idx + 1 == size)
+			if (jumps->index + 1 == size)
 				break;
 		}
 		printf("Value checked at index [%ld] = [%d]\n",
-				jumps->idx, jumps->n);
+				jumps->index, jumps->n);
 	}
 	printf("Value found between indexes [%ld] and [%ld]\n",
-			node->idx, jumps->idx);
+			node->index, jumps->index);
 
-	for (; node->idx < jumps->idx && node->n < value; node = node->next)
+	for (; node->index < jumps->index && node->n < value; node = node->next)
 		printf("Value checked at index [%ld] = [%d]\n",
-				node->idx, node->n);
-	printf("Value checked at index [%ld] = [%d]\n", node->idx, node->n);
+				node->index, node->n);
+	printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
 
 	return (node->n == value ? node : NULL);
 }
