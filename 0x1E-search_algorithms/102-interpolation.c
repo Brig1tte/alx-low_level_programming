@@ -1,4 +1,7 @@
 #include "search_algos.h"
+#include <math.h>
+#include <stdio.h>
+#include <stddef.h>
 
 /**
   * interpolation_search - To srch for val in sorted array of ints with I_Srch
@@ -17,9 +20,9 @@ int interpolation_search(int *array, size_t size, int value)
 	if (array == NULL)
 		return (-1);
 
-	for (j = 0, z = size - 1; z >= l;)
+	for (j = 0, z = size - 1; z >= j;)
 	{
-		indx = j + (((double)(z - l) / (array[z] - array[j])) * (value - array[j]));
+		indx = j + (((double)(z - j) / (array[z] - array[j])) * (value - array[j]));
 		if (indx < size)
 			printf("Value checked array[%ld] = [%d]\n", indx, array[indx]);
 		else
